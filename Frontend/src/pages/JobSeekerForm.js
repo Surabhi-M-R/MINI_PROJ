@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Users, ArrowLeft, CheckCircle, GraduationCap, Target, Clock, User } from 'lucide-react';
@@ -6,6 +6,7 @@ import { jobTypes, commonSkills } from '../data/dummyData';
 
 const JobSeekerForm = () => {
     const navigate = useNavigate();
+    const [selectedJob, setSelectedJob] = useState(null);
     const [formData, setFormData] = useState({
         fullName: '',
         age: '',
@@ -61,13 +62,28 @@ const JobSeekerForm = () => {
         return Object.keys(newErrors).length === 0;
     };
 
+    useEffect(() => {
+        // Get selected job from localStorage
+        const storedJob = localStorage.getItem('selectedJob');
+        if (storedJob) {
+            const job = JSON.parse(storedJob);
+            setSelectedJob(job);
+            // Pre-fill job type preference
+            setFormData(prev => ({
+                ...prev,
+                jobTypePreference: job.jobType
+            }));
+        }
+    }, []);
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
         if (validateForm()) {
             // Store form data in localStorage
             localStorage.setItem('jobSeekerFormData', JSON.stringify(formData));
-            // Navigate to job seeker dashboard
+            // Show success message and navigate back to dashboard
+            alert(`Application submitted successfully for ${selectedJob?.title || 'the selected job'}!`);
             navigate('/jobseeker-dashboard');
         }
     };
@@ -83,11 +99,11 @@ const JobSeekerForm = () => {
                     className="text-center mb-12"
                 >
                     <button
-                        onClick={() => navigate('/')}
+                        onClick={() => navigate('/jobseeker-dashboard')}
                         className="inline-flex items-center text-secondary-600 hover:text-secondary-700 mb-6 transition-colors duration-200"
                     >
                         <ArrowLeft className="h-4 w-4 mr-2" />
-                        Back to Home
+                        Back to Jobs
                     </button>
 
                     <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-secondary-600 to-primary-600 rounded-full mb-6">
@@ -95,11 +111,56 @@ const JobSeekerForm = () => {
                     </div>
 
                     <h1 className="text-4xl font-bold text-gray-900 mb-4">
-                        Find Your Dream Job
+                        {selectedJob ? 'Apply for Job' : 'Find Your Dream Job'}
                     </h1>
                     <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                        Tell us about yourself and your preferences to find the perfect job opportunity.
+                        {selectedJob
+                            ? `Complete your application for ${selectedJob.title} at ${selectedJob.organization}`
+                            : 'Tell us about yourself and your preferences to find the perfect job opportunity.'
+                        }
                     </p>
+
+                    {/* Selected Job Display */}
+                    {selectedJob && (
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5 }}
+                            className="mt-6 card p-6 bg-gradient-to-r from-secondary-50 to-primary-50 border-2 border-secondary-200"
+                        >
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <h3 className="text-xl font-semibold text-gray-900 mb-1">{selectedJob.title}</h3>
+                                    <p className="text-gray-600 mb-2">{selectedJob.organization}</p>
+                                    <div className="flex items-center space-x-4 text-sm text-gray-500">
+                                        <span className="flex items-center">
+                                            <Clock className="h-4 w-4 mr-1" />
+                                            {selectedJob.jobType}
+                                        </span>
+                                        <span className="flex items-center">
+                                            <Target className="h-4 w-4 mr-1" />
+                                            {selectedJob.location}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className="text-right">
+                                    <div className="text-sm text-gray-500 mb-1">Required Skills:</div>
+                                    <div className="flex flex-wrap gap-1">
+                                        {selectedJob.skillsRequired.slice(0, 3).map((skill) => (
+                                            <span key={skill} className="px-2 py-1 bg-secondary-100 text-secondary-800 text-xs rounded-full">
+                                                {skill}
+                                            </span>
+                                        ))}
+                                        {selectedJob.skillsRequired.length > 3 && (
+                                            <span className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">
+                                                +{selectedJob.skillsRequired.length - 3} more
+                                            </span>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
+                    )}
                 </motion.div>
 
                 {/* Form */}
@@ -298,7 +359,7 @@ const JobSeekerForm = () => {
                             >
                                 <CheckCircle className="h-5 w-5" />
                             </motion.div>
-                            Find My Dream Job
+                            {selectedJob ? 'Submit Application' : 'Find My Dream Job'}
                         </motion.button>
                     </form>
                 </motion.div>

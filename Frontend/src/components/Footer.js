@@ -54,11 +54,11 @@ const Footer = () => {
                                     Post a Job
                                 </Link>
                             </li>
-                            <li>
-                                <Link to="/jobseeker-form" className="text-gray-300 hover:text-white transition-colors duration-200">
-                                    Find Jobs
-                                </Link>
-                            </li>
+              <li>
+                <Link to="/jobseeker-dashboard" className="text-gray-300 hover:text-white transition-colors duration-200">
+                  Find Jobs
+                </Link>
+              </li>
                             <li>
                                 <button className="text-gray-300 hover:text-white transition-colors duration-200 text-left">
                                     About Us

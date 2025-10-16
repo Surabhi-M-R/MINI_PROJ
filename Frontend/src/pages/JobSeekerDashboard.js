@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Search, Filter, MapPin, Clock, Building, ArrowLeft, Briefcase, CheckCircle, Heart } from 'lucide-react';
 import { jobListings } from '../data/dummyData';
-import LoadingSpinner from '../components/LoadingSpinner';
+import JobDetailsModal from '../components/JobDetailsModal';
 
 const JobSeekerDashboard = () => {
     const navigate = useNavigate();
@@ -13,15 +13,21 @@ const JobSeekerDashboard = () => {
     const [jobTypeFilter, setJobTypeFilter] = useState('');
     const [skillFilter, setSkillFilter] = useState('');
     const [likedJobs, setLikedJobs] = useState(new Set());
+    const [selectedJob, setSelectedJob] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
-        // Get job seeker form data from localStorage
+        // Get job seeker form data from localStorage (optional)
         const storedData = localStorage.getItem('jobSeekerFormData');
         if (storedData) {
             setJobSeekerData(JSON.parse(storedData));
         } else {
-            // If no data, redirect back to form
-            navigate('/jobseeker-form');
+            // Set default data for dashboard access
+            setJobSeekerData({
+                fullName: 'Job Seeker',
+                jobTypePreference: 'Any',
+                skills: []
+            });
         }
     }, [navigate]);
 
@@ -59,7 +65,33 @@ const JobSeekerDashboard = () => {
     }, [searchTerm, jobTypeFilter, skillFilter]);
 
     const handleAcceptJob = (jobId) => {
-        alert(`Application submitted for job ID: ${jobId}`);
+        // Store the selected job data and navigate to form
+        const job = jobListings.find(job => job.id === jobId);
+        if (job) {
+            localStorage.setItem('selectedJob', JSON.stringify(job));
+            navigate('/jobseeker-form');
+        }
+    };
+
+    const handleViewDetails = (jobId) => {
+        const job = jobListings.find(job => job.id === jobId);
+        if (job) {
+            setSelectedJob(job);
+            setIsModalOpen(true);
+        }
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+        setSelectedJob(null);
+    };
+
+    const handleApplyFromModal = () => {
+        if (selectedJob) {
+            localStorage.setItem('selectedJob', JSON.stringify(selectedJob));
+            setIsModalOpen(false);
+            navigate('/jobseeker-form');
+        }
     };
 
     const handleLikeJob = (jobId) => {
@@ -74,28 +106,7 @@ const JobSeekerDashboard = () => {
         });
     };
 
-    if (!jobSeekerData) {
-        return (
-            <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-secondary-50 via-white to-primary-50">
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5 }}
-                    className="text-center"
-                >
-                    <LoadingSpinner size="large" color="secondary" />
-                    <motion.p
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="mt-4 text-gray-600 font-medium"
-                    >
-                        Finding your dream job...
-                    </motion.p>
-                </motion.div>
-            </div>
-        );
-    }
+    // Remove loading state - dashboard is now accessible directly
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-secondary-50 via-white to-primary-50 py-8">
@@ -108,11 +119,11 @@ const JobSeekerDashboard = () => {
                     className="mb-8"
                 >
                     <button
-                        onClick={() => navigate('/jobseeker-form')}
+                        onClick={() => navigate('/')}
                         className="inline-flex items-center text-secondary-600 hover:text-secondary-700 mb-6 transition-colors duration-200"
                     >
                         <ArrowLeft className="h-4 w-4 mr-2" />
-                        Back to Form
+                        Back to Home
                     </button>
 
                     <div className="text-center mb-8">
@@ -123,12 +134,14 @@ const JobSeekerDashboard = () => {
                             Job Opportunities
                         </h1>
                         <p className="text-xl text-gray-600">
-                            Welcome, {jobSeekerData.fullName}
+                            {jobSeekerData?.fullName ? `Welcome, ${jobSeekerData.fullName}` : 'Discover Your Next Opportunity'}
                         </p>
-                        <div className="mt-4 inline-flex items-center px-4 py-2 bg-secondary-100 text-secondary-800 rounded-full">
-                            <CheckCircle className="h-4 w-4 mr-2" />
-                            Looking for: {jobSeekerData.jobTypePreference} - {jobSeekerData.skills.join(', ')}
-                        </div>
+                        {jobSeekerData?.skills?.length > 0 && (
+                            <div className="mt-4 inline-flex items-center px-4 py-2 bg-secondary-100 text-secondary-800 rounded-full">
+                                <CheckCircle className="h-4 w-4 mr-2" />
+                                Looking for: {jobSeekerData.jobTypePreference} - {jobSeekerData.skills.join(', ')}
+                            </div>
+                        )}
                     </div>
                 </motion.div>
 
@@ -313,6 +326,7 @@ const JobSeekerDashboard = () => {
                                     </motion.div>
                                 </motion.button>
                                 <motion.button
+                                    onClick={() => handleViewDetails(job.id)}
                                     className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors duration-200"
                                     whileHover={{
                                         scale: 1.05,
@@ -347,6 +361,14 @@ const JobSeekerDashboard = () => {
                     </motion.div>
                 )}
             </div>
+
+            {/* Job Details Modal */}
+            <JobDetailsModal
+                job={selectedJob}
+                isOpen={isModalOpen}
+                onClose={handleCloseModal}
+                onApply={handleApplyFromModal}
+            />
         </div>
     );
 };

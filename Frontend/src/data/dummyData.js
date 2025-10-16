@@ -72,6 +72,12 @@ export const jobListings = [
     skillsRequired: ["React", "JavaScript", "TypeScript", "CSS"],
     description: "We are looking for an experienced frontend developer to join our growing team. You will be responsible for building user interfaces and ensuring great user experience.",
     location: "New York, NY",
+    locationDetails: {
+      address: "123 Tech Street, Manhattan, NY 10001",
+      coordinates: { lat: 40.7128, lng: -74.0060 },
+      nearby: ["Times Square (0.5 mi)", "Central Park (1.2 mi)", "Brooklyn Bridge (2.1 mi)"],
+      commute: "Subway accessible, multiple bus routes nearby"
+    },
     postedBy: "John Smith"
   },
   {
@@ -82,6 +88,12 @@ export const jobListings = [
     skillsRequired: ["Digital Marketing", "SEO", "Google Analytics", "Content Marketing"],
     description: "Join our dynamic marketing team to help clients grow their online presence. This is a fully remote position with flexible hours.",
     location: "Remote",
+    locationDetails: {
+      address: "Work from anywhere",
+      coordinates: null,
+      nearby: ["Global team", "Flexible timezone", "Virtual office"],
+      commute: "No commute required - work from home"
+    },
     postedBy: "Maria Garcia"
   },
   {
@@ -92,6 +104,12 @@ export const jobListings = [
     skillsRequired: ["UI/UX Design", "Figma", "Adobe Creative Suite", "User Research"],
     description: "We need a creative UI/UX designer to work on exciting projects for our clients. Part-time position with potential for full-time conversion.",
     location: "Los Angeles, CA",
+    locationDetails: {
+      address: "456 Creative Blvd, Hollywood, CA 90028",
+      coordinates: { lat: 34.0522, lng: -118.2437 },
+      nearby: ["Hollywood Walk of Fame (0.3 mi)", "Griffith Observatory (3.2 mi)", "Santa Monica Beach (8.5 mi)"],
+      commute: "Metro accessible, parking available, bike-friendly area"
+    },
     postedBy: "Alex Johnson"
   },
   {
@@ -102,6 +120,12 @@ export const jobListings = [
     skillsRequired: ["Python", "Machine Learning", "SQL", "Statistics"],
     description: "Help us turn data into actionable insights. We're looking for a data scientist with strong analytical skills and machine learning experience.",
     location: "Seattle, WA",
+    locationDetails: {
+      address: "789 Data Drive, Downtown Seattle, WA 98101",
+      coordinates: { lat: 47.6062, lng: -122.3321 },
+      nearby: ["Space Needle (0.8 mi)", "Pike Place Market (0.5 mi)", "Seattle Waterfront (0.3 mi)"],
+      commute: "Light rail accessible, ferry terminal nearby, excellent public transport"
+    },
     postedBy: "Dr. Sarah Lee"
   },
   {
@@ -112,6 +136,12 @@ export const jobListings = [
     skillsRequired: ["Marketing", "Social Media", "Content Creation", "Analytics"],
     description: "Join our fast-paced startup environment. You'll be responsible for coordinating marketing campaigns and managing social media presence.",
     location: "Remote",
+    locationDetails: {
+      address: "Work from anywhere",
+      coordinates: null,
+      nearby: ["Global team", "Flexible timezone", "Virtual office"],
+      commute: "No commute required - work from home"
+    },
     postedBy: "Tom Wilson"
   },
   {
@@ -122,6 +152,12 @@ export const jobListings = [
     skillsRequired: ["Financial Analysis", "Excel", "Financial Modeling", "Investment Analysis"],
     description: "We're seeking a financial analyst to support our investment team with research, analysis, and financial modeling.",
     location: "Boston, MA",
+    locationDetails: {
+      address: "321 Financial District, Boston, MA 02101",
+      coordinates: { lat: 42.3601, lng: -71.0589 },
+      nearby: ["Faneuil Hall (0.2 mi)", "Boston Common (0.4 mi)", "Harvard University (3.1 mi)"],
+      commute: "MBTA accessible, walking distance to major attractions, bike-friendly"
+    },
     postedBy: "Robert Brown"
   }
 ];

@@ -22,10 +22,11 @@ function App() {
                 >
                     <Routes>
                         <Route path="/" element={<LandingPage />} />
-                        <Route path="/hiring-form" element={<HiringForm />} />
-                        <Route path="/jobseeker-form" element={<JobSeekerForm />} />
-                        <Route path="/hiring-dashboard" element={<HiringDashboard />} />
-                        <Route path="/jobseeker-dashboard" element={<JobSeekerDashboard />} />
+            <Route path="/hiring-form" element={<HiringForm />} />
+            <Route path="/jobseeker-form" element={<JobSeekerForm />} />
+            <Route path="/hiring-dashboard" element={<HiringDashboard />} />
+            <Route path="/jobseeker-dashboard" element={<JobSeekerDashboard />} />
+            <Route path="/apply/:jobId" element={<JobSeekerForm />} />
                     </Routes>
                 </motion.main>
                 <Footer />

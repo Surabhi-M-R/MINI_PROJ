@@ -85,7 +85,7 @@ const LandingPage = () => {
                                 </motion.button>
                             </Link>
 
-                            <Link to="/jobseeker-form">
+                            <Link to="/jobseeker-dashboard">
                                 <motion.button
                                     className="btn-secondary flex items-center space-x-2 text-lg px-8 py-4 magnetic-hover shimmer"
                                     whileHover={{
@@ -280,7 +280,7 @@ const LandingPage = () => {
                                     Start Hiring Today
                                 </motion.button>
                             </Link>
-                            <Link to="/jobseeker-form">
+                            <Link to="/jobseeker-dashboard">
                                 <motion.button
                                     className="border-2 border-white text-white font-semibold py-3 px-8 rounded-lg hover:bg-white hover:text-primary-600 transition-colors duration-200"
                                     whileHover={{ scale: 1.05 }}
