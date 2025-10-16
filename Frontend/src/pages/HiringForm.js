@@ -1,20 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Briefcase, ArrowLeft, CheckCircle, Building, User, FileText, Target } from 'lucide-react';
 import { jobTypes, commonSkills } from '../data/dummyData';
 
 const HiringForm = () => {
-    const navigate = useNavigate();
-    const [formData, setFormData] = useState({
-        fullName: '',
-        age: '',
-        organizationName: '',
-        jobType: '',
-        skillsRequired: [],
-        description: ''
-    });
-    const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    fullName: '',
+    age: '',
+    organizationName: '',
+    jobType: '',
+    skillsRequired: [],
+    description: ''
+  });
+  const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    console.log('HiringForm component loaded');
+  }, []);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -61,16 +65,47 @@ const HiringForm = () => {
         return Object.keys(newErrors).length === 0;
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        if (validateForm()) {
-            // Store form data in localStorage
-            localStorage.setItem('hiringFormData', JSON.stringify(formData));
-            // Navigate to hiring dashboard
-            navigate('/hiring-dashboard');
-        }
-    };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Form submitted with data:', formData);
+    
+    if (validateForm()) {
+      console.log('Form validation passed');
+      
+      // Store form data in localStorage
+      localStorage.setItem('hiringFormData', JSON.stringify(formData));
+      
+      // Create new job posting
+      const newJob = {
+        id: Date.now(),
+        title: formData.jobType + ' Position',
+        organization: formData.organizationName,
+        jobType: formData.jobType,
+        skillsRequired: formData.skillsRequired,
+        description: formData.description,
+        location: 'India', // Default location
+        postedDate: new Date().toISOString(),
+        applications: 0,
+        views: 0,
+        status: 'active',
+        postedBy: formData.fullName
+      };
+      
+      console.log('New job created:', newJob);
+      
+      // Get existing posted jobs and add new one
+      const existingJobs = JSON.parse(localStorage.getItem('postedJobs') || '[]');
+      const updatedJobs = [...existingJobs, newJob];
+      localStorage.setItem('postedJobs', JSON.stringify(updatedJobs));
+      
+      console.log('Jobs updated in localStorage');
+      
+      // Navigate to hiring dashboard
+      navigate('/hiring-dashboard');
+    } else {
+      console.log('Form validation failed');
+    }
+  };
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-secondary-50 py-12">

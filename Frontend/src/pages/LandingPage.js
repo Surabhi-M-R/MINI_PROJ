@@ -58,7 +58,7 @@ const LandingPage = () => {
                             variants={itemVariants}
                             className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16"
                         >
-                            <Link to="/hiring-form">
+                            <Link to="/hiring-dashboard">
                                 <motion.button
                                     className="btn-primary flex items-center space-x-2 text-lg px-8 py-4 magnetic-hover shimmer"
                                     whileHover={{
@@ -271,7 +271,7 @@ const LandingPage = () => {
                             Join thousands of skilled workers and employers across India who have found success with SkillBridge.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <Link to="/hiring-form">
+                            <Link to="/hiring-dashboard">
                                 <motion.button
                                     className="bg-white text-primary-600 font-semibold py-3 px-8 rounded-lg hover:bg-gray-100 transition-colors duration-200"
                                     whileHover={{ scale: 1.05 }}

@@ -35,8 +35,8 @@ const Navbar = () => {
                             Home
                         </Link>
                         <Link
-                            to="/hiring-form"
-                            className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${location.pathname === '/hiring-form'
+                            to="/hiring-dashboard"
+                            className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${location.pathname === '/hiring-dashboard'
                                 ? 'text-primary-600 bg-primary-50'
                                 : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
                                 }`}
