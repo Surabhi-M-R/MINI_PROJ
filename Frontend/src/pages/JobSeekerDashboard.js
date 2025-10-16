@@ -131,10 +131,10 @@ const JobSeekerDashboard = () => {
                             <Briefcase className="h-8 w-8 text-white" />
                         </div>
                         <h1 className="text-4xl font-bold text-gray-900 mb-2">
-                            Job Opportunities
+                            Daily Work Opportunities
                         </h1>
                         <p className="text-xl text-gray-600">
-                            {jobSeekerData?.fullName ? `Welcome, ${jobSeekerData.fullName}` : 'Discover Your Next Opportunity'}
+                            {jobSeekerData?.fullName ? `Welcome, ${jobSeekerData.fullName}` : 'Find Your Next Job Today'}
                         </p>
                         {jobSeekerData?.skills?.length > 0 && (
                             <div className="mt-4 inline-flex items-center px-4 py-2 bg-secondary-100 text-secondary-800 rounded-full">
@@ -197,7 +197,7 @@ const JobSeekerDashboard = () => {
                     </div>
 
                     <div className="mt-4 text-sm text-gray-600">
-                        Showing {filteredJobs.length} of {jobListings.length} job opportunities
+                        Showing {filteredJobs.length} of {jobListings.length} work opportunities
                     </div>
                 </motion.div>
 
@@ -353,7 +353,7 @@ const JobSeekerDashboard = () => {
                     >
                         <Briefcase className="h-16 w-16 text-gray-400 mx-auto mb-4" />
                         <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                            No jobs found
+                            No work found
                         </h3>
                         <p className="text-gray-600">
                             Try adjusting your search criteria or filters.

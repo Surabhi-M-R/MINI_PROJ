@@ -49,8 +49,8 @@ const LandingPage = () => {
                                 </span>
                             </h1>
                             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-                                Connecting Skills with Opportunities – One Click Away.
-                                Join thousands of professionals and companies finding their perfect match.
+                                Connecting Hard Workers with Daily Jobs – One Click Away.
+                                Join thousands of skilled workers and employers across India finding their perfect match.
                             </p>
                         </motion.div>
 
@@ -102,7 +102,7 @@ const LandingPage = () => {
                                     >
                                         <Users className="h-5 w-5" />
                                     </motion.div>
-                                    <span>I Want a Job</span>
+                                    <span>I Need Work</span>
                                     <motion.div
                                         animate={{ x: [0, 5, 0] }}
                                         transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
@@ -128,9 +128,9 @@ const LandingPage = () => {
                                     animate={{ scale: [1, 1.1, 1] }}
                                     transition={{ duration: 2, repeat: Infinity, repeatDelay: 4 }}
                                 >
-                                    10,000+
+                                    15,000+
                                 </motion.div>
-                                <div className="text-gray-600">Active Job Seekers</div>
+                                <div className="text-gray-600">Skilled Workers</div>
                             </motion.div>
                             <motion.div
                                 className="text-center card p-6 card-hover"
@@ -142,9 +142,9 @@ const LandingPage = () => {
                                     animate={{ scale: [1, 1.1, 1] }}
                                     transition={{ duration: 2, repeat: Infinity, repeatDelay: 6 }}
                                 >
-                                    2,500+
+                                    3,500+
                                 </motion.div>
-                                <div className="text-gray-600">Companies Hiring</div>
+                                <div className="text-gray-600">Employers Hiring</div>
                             </motion.div>
                             <motion.div
                                 className="text-center card p-6 card-hover"
@@ -156,9 +156,9 @@ const LandingPage = () => {
                                     animate={{ scale: [1, 1.1, 1] }}
                                     transition={{ duration: 2, repeat: Infinity, repeatDelay: 8 }}
                                 >
-                                    95%
+                                    98%
                                 </motion.div>
-                                <div className="text-gray-600">Success Rate</div>
+                                <div className="text-gray-600">Job Placement Rate</div>
                             </motion.div>
                         </motion.div>
                     </motion.div>
@@ -186,7 +186,7 @@ const LandingPage = () => {
                             Why Choose SkillBridge?
                         </h2>
                         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                            We make the job search and hiring process simple, efficient, and successful.
+                            We connect skilled workers with daily job opportunities across India - fast, fair, and reliable.
                         </p>
                     </motion.div>
 
@@ -194,20 +194,20 @@ const LandingPage = () => {
                         {[
                             {
                                 icon: <CheckCircle className="h-8 w-8 text-primary-600" />,
-                                title: "Smart Matching",
-                                description: "Our AI-powered algorithm matches the right candidates with the right opportunities.",
+                                title: "Daily Job Matching",
+                                description: "Find daily wage work that matches your skills and location - same day placement available.",
                                 color: "primary"
                             },
                             {
                                 icon: <Star className="h-8 w-8 text-secondary-600" />,
-                                title: "Quality Focus",
-                                description: "We ensure high-quality matches by verifying skills and experience of all users.",
+                                title: "Fair Pay Guarantee",
+                                description: "We ensure fair wages and safe working conditions for all skilled workers.",
                                 color: "secondary"
                             },
                             {
                                 icon: <TrendingUp className="h-8 w-8 text-primary-600" />,
-                                title: "Fast Results",
-                                description: "Get connected with opportunities or candidates within 24 hours of posting.",
+                                title: "Quick Placement",
+                                description: "Get connected with employers within hours - start working the same day.",
                                 color: "primary"
                             }
                         ].map((feature, index) => (
@@ -265,10 +265,10 @@ const LandingPage = () => {
                         viewport={{ once: true }}
                     >
                         <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                            Ready to Get Started?
+                            Ready to Start Working?
                         </h2>
                         <p className="text-xl text-primary-100 mb-8">
-                            Join thousands of professionals and companies who have found success with SkillBridge.
+                            Join thousands of skilled workers and employers across India who have found success with SkillBridge.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Link to="/hiring-form">
@@ -286,7 +286,7 @@ const LandingPage = () => {
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
                                 >
-                                    Find Your Dream Job
+                                    Find Daily Work
                                 </motion.button>
                             </Link>
                         </div>

@@ -24,8 +24,8 @@ const Footer = () => {
                             </span>
                         </div>
                         <p className="text-gray-300 mb-6 max-w-md">
-                            Connecting Skills with Opportunities – One Click Away.
-                            Join thousands of professionals and companies finding their perfect match.
+                            Connecting Hard Workers with Daily Jobs – One Click Away.
+                            Join thousands of skilled workers and employers across India finding their perfect match.
                         </p>
                         <div className="flex space-x-4">
                             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors duration-200">
@@ -54,11 +54,11 @@ const Footer = () => {
                                     Post a Job
                                 </Link>
                             </li>
-              <li>
-                <Link to="/jobseeker-dashboard" className="text-gray-300 hover:text-white transition-colors duration-200">
-                  Find Jobs
-                </Link>
-              </li>
+                            <li>
+                                <Link to="/jobseeker-dashboard" className="text-gray-300 hover:text-white transition-colors duration-200">
+                                    Find Work
+                                </Link>
+                            </li>
                             <li>
                                 <button className="text-gray-300 hover:text-white transition-colors duration-200 text-left">
                                     About Us
@@ -73,15 +73,15 @@ const Footer = () => {
                         <ul className="space-y-3">
                             <li className="flex items-center space-x-2 text-gray-300">
                                 <Mail className="h-4 w-4" />
-                                <span>contact@skillbridge.com</span>
+                                <span>contact@skillbridge.in</span>
                             </li>
                             <li className="flex items-center space-x-2 text-gray-300">
                                 <Phone className="h-4 w-4" />
-                                <span>+1 (555) 123-4567</span>
+                                <span>+91 98765 43210</span>
                             </li>
                             <li className="flex items-center space-x-2 text-gray-300">
                                 <MapPin className="h-4 w-4" />
-                                <span>123 Business Ave, Suite 100</span>
+                                <span>Connaught Place, New Delhi 110001</span>
                             </li>
                         </ul>
                     </div>
@@ -89,7 +89,7 @@ const Footer = () => {
 
                 <div className="border-t border-gray-800 mt-8 pt-8 text-center">
                     <p className="text-gray-400">
-                        © 2024 SkillBridge. All rights reserved. Made with ❤️ for connecting talent.
+                        © 2024 SkillBridge. All rights reserved. Made with ❤️ for connecting hard workers.
                     </p>
                 </div>
             </div>

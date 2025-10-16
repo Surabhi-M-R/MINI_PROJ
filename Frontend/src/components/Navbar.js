@@ -50,14 +50,14 @@ const Navbar = () => {
                                 : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
                                 }`}
                         >
-                            Find Jobs
+                            Find Work
                         </Link>
                     </div>
 
                     <div className="flex items-center space-x-4">
                         <div className="flex items-center space-x-2 text-sm text-gray-600">
                             <Users className="h-4 w-4" />
-                            <span>Connecting Talent</span>
+                            <span>Connecting Workers</span>
                         </div>
                     </div>
                 </div>
