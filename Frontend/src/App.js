@@ -17,7 +17,7 @@ function App() {
             <Router>
                 <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-50 to-gray-100">
                     <Navbar />
-                    <motion.main 
+                    <motion.main
                         className="flex-1"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}

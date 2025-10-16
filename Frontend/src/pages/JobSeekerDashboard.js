@@ -12,32 +12,32 @@ const JobSeekerDashboard = () => {
     const { user } = useAuth();
     const [jobSeekerData, setJobSeekerData] = useState(null);
     const [filteredJobs, setFilteredJobs] = useState(jobListings);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [jobTypeFilter, setJobTypeFilter] = useState('');
-  const [skillFilter, setSkillFilter] = useState('');
-  const [likedJobs, setLikedJobs] = useState(new Set());
-  const [selectedJob, setSelectedJob] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [jobTypeFilter, setJobTypeFilter] = useState('');
+    const [skillFilter, setSkillFilter] = useState('');
+    const [likedJobs, setLikedJobs] = useState(new Set());
+    const [selectedJob, setSelectedJob] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
-  useEffect(() => {
-    // Use authenticated user data if available, otherwise use stored form data
-    if (user) {
-      setJobSeekerData(user);
-    } else {
-      const storedData = localStorage.getItem('jobSeekerFormData');
-      if (storedData) {
-        setJobSeekerData(JSON.parse(storedData));
-      } else {
-        // Set default data for dashboard access
-        setJobSeekerData({
-          fullName: 'Job Seeker',
-          jobTypePreference: 'Any',
-          skills: []
-        });
-      }
-    }
-  }, [navigate, user]);
+    useEffect(() => {
+        // Use authenticated user data if available, otherwise use stored form data
+        if (user) {
+            setJobSeekerData(user);
+        } else {
+            const storedData = localStorage.getItem('jobSeekerFormData');
+            if (storedData) {
+                setJobSeekerData(JSON.parse(storedData));
+            } else {
+                // Set default data for dashboard access
+                setJobSeekerData({
+                    fullName: 'Job Seeker',
+                    jobTypePreference: 'Any',
+                    skills: []
+                });
+            }
+        }
+    }, [navigate, user]);
 
     useEffect(() => {
         let filtered = jobListings;
@@ -119,65 +119,65 @@ const JobSeekerDashboard = () => {
     return (
         <div className="min-h-screen bg-gradient-to-br from-secondary-50 via-white to-primary-50 py-8">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-8"
-        >
-          <div className="flex items-center justify-between mb-6">
-            <button
-              onClick={() => navigate('/')}
-              className="inline-flex items-center text-secondary-600 hover:text-secondary-700 transition-colors duration-200"
-            >
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Home
-            </button>
-            
-            {user ? (
-              <div className="flex items-center space-x-4">
-                <div className="flex items-center space-x-2 text-sm text-gray-600">
-                  <User className="h-4 w-4" />
-                  <span>Welcome, {user.fullName}</span>
-                </div>
-                <button
-                  onClick={() => navigate('/employee-dashboard')}
-                  className="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors duration-200 flex items-center space-x-2"
+                {/* Header */}
+                <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="mb-8"
                 >
-                  <User className="h-4 w-4" />
-                  <span>My Profile</span>
-                </button>
-              </div>
-            ) : (
-              <button
-                onClick={() => setIsAuthModalOpen(true)}
-                className="px-6 py-2 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-lg hover:from-primary-700 hover:to-secondary-700 transition-all duration-200 flex items-center space-x-2"
-              >
-                <LogIn className="h-4 w-4" />
-                <span>Login / Sign Up</span>
-              </button>
-            )}
-          </div>
+                    <div className="flex items-center justify-between mb-6">
+                        <button
+                            onClick={() => navigate('/')}
+                            className="inline-flex items-center text-secondary-600 hover:text-secondary-700 transition-colors duration-200"
+                        >
+                            <ArrowLeft className="h-4 w-4 mr-2" />
+                            Back to Home
+                        </button>
 
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-secondary-600 to-primary-600 rounded-full mb-4">
-              <Briefcase className="h-8 w-8 text-white" />
-            </div>
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">
-              Daily Work Opportunities
-            </h1>
-            <p className="text-xl text-gray-600">
-              {jobSeekerData?.fullName ? `Welcome, ${jobSeekerData.fullName}` : 'Find Your Next Job Today'}
-            </p>
-            {jobSeekerData?.skills?.length > 0 && (
-              <div className="mt-4 inline-flex items-center px-4 py-2 bg-secondary-100 text-secondary-800 rounded-full">
-                <CheckCircle className="h-4 w-4 mr-2" />
-                Looking for: {jobSeekerData.jobTypePreference} - {jobSeekerData.skills.join(', ')}
-              </div>
-            )}
-          </div>
-        </motion.div>
+                        {user ? (
+                            <div className="flex items-center space-x-4">
+                                <div className="flex items-center space-x-2 text-sm text-gray-600">
+                                    <User className="h-4 w-4" />
+                                    <span>Welcome, {user.fullName}</span>
+                                </div>
+                                <button
+                                    onClick={() => navigate('/employee-dashboard')}
+                                    className="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors duration-200 flex items-center space-x-2"
+                                >
+                                    <User className="h-4 w-4" />
+                                    <span>My Profile</span>
+                                </button>
+                            </div>
+                        ) : (
+                            <button
+                                onClick={() => setIsAuthModalOpen(true)}
+                                className="px-6 py-2 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-lg hover:from-primary-700 hover:to-secondary-700 transition-all duration-200 flex items-center space-x-2"
+                            >
+                                <LogIn className="h-4 w-4" />
+                                <span>Login / Sign Up</span>
+                            </button>
+                        )}
+                    </div>
+
+                    <div className="text-center mb-8">
+                        <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-secondary-600 to-primary-600 rounded-full mb-4">
+                            <Briefcase className="h-8 w-8 text-white" />
+                        </div>
+                        <h1 className="text-4xl font-bold text-gray-900 mb-2">
+                            Daily Work Opportunities
+                        </h1>
+                        <p className="text-xl text-gray-600">
+                            {jobSeekerData?.fullName ? `Welcome, ${jobSeekerData.fullName}` : 'Find Your Next Job Today'}
+                        </p>
+                        {jobSeekerData?.skills?.length > 0 && (
+                            <div className="mt-4 inline-flex items-center px-4 py-2 bg-secondary-100 text-secondary-800 rounded-full">
+                                <CheckCircle className="h-4 w-4 mr-2" />
+                                Looking for: {jobSeekerData.jobTypePreference} - {jobSeekerData.skills.join(', ')}
+                            </div>
+                        )}
+                    </div>
+                </motion.div>
 
                 {/* Filters */}
                 <motion.div
@@ -398,16 +398,16 @@ const JobSeekerDashboard = () => {
 
             {/* Job Details Modal */}
             <JobDetailsModal
-              job={selectedJob}
-              isOpen={isModalOpen}
-              onClose={handleCloseModal}
-              onApply={handleApplyFromModal}
+                job={selectedJob}
+                isOpen={isModalOpen}
+                onClose={handleCloseModal}
+                onApply={handleApplyFromModal}
             />
 
             {/* Employee Auth Modal */}
             <EmployeeAuthModal
-              isOpen={isAuthModalOpen}
-              onClose={() => setIsAuthModalOpen(false)}
+                isOpen={isAuthModalOpen}
+                onClose={() => setIsAuthModalOpen(false)}
             />
         </div>
     );
